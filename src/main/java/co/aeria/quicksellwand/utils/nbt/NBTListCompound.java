@@ -1,4 +1,4 @@
-package utils.nbt;
+package co.aeria.quicksellwand.utils.nbt;
 
 import java.util.HashSet;
 import java.util.Set;

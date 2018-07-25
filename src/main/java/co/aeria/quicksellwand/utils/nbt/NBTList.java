@@ -1,6 +1,6 @@
-package utils.nbt;
+package co.aeria.quicksellwand.utils.nbt;
 
-import utils.MethodNames;
+import co.aeria.quicksellwand.utils.MethodNames;
 
 import java.lang.reflect.Method;
 

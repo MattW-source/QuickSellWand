@@ -1,4 +1,4 @@
-package utils.nbt;
+package co.aeria.quicksellwand.utils.nbt;
 
 import java.io.FileInputStream;
 import java.io.FileOutputStream;
@@ -11,9 +11,9 @@ import java.util.Stack;
 import org.bukkit.block.BlockState;
 import org.bukkit.entity.Entity;
 
-import utils.GsonWrapper;
-import utils.MethodNames;
-import utils.MinecraftVersion;
+import co.aeria.quicksellwand.utils.GsonWrapper;
+import co.aeria.quicksellwand.utils.MethodNames;
+import co.aeria.quicksellwand.utils.MinecraftVersion;
 
 public class NBTReflectionUtil {  
 

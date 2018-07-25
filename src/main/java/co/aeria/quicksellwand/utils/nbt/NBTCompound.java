@@ -1,8 +1,8 @@
-package utils.nbt;
+package co.aeria.quicksellwand.utils.nbt;
 
 import java.util.Set;
 
-import utils.MinecraftVersion;
+import co.aeria.quicksellwand.utils.MinecraftVersion;
 
 
 public class NBTCompound {

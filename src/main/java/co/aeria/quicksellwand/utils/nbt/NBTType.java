@@ -1,4 +1,4 @@
-package utils.nbt;
+package co.aeria.quicksellwand.utils.nbt;
 
 public enum NBTType {
     NBTTagEnd(0),

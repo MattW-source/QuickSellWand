@@ -1,10 +1,10 @@
-package utils.nbt;
+package co.aeria.quicksellwand.utils.nbt;
 
 import java.lang.reflect.Method;
 
 import org.bukkit.inventory.ItemStack;
 
-import utils.MinecraftVersion;
+import co.aeria.quicksellwand.utils.MinecraftVersion;
 
 public enum ReflectionMethod {
 

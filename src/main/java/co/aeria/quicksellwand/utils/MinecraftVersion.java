@@ -1,4 +1,4 @@
-package utils;
+package co.aeria.quicksellwand.utils;
 
 import org.bukkit.Bukkit;
 

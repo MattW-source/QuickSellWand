@@ -1,4 +1,4 @@
-package utils.nbt;
+package co.aeria.quicksellwand.utils.nbt;
 
 import java.io.File;
 import java.io.FileInputStream;
