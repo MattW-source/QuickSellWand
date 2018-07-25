@@ -1,0 +1,34 @@
+name: QuickSellWand
+version: ${project.version}
+main: co.aeria.quicksellwand.QuickSellWandPlugin
+softdepend: [ShopGUIPlus]
+authors: ['DNx5']
+description: Sell your chest contents quickly by simply right-click
+commands:
+  quicksellwand:
+    description: 'QuickSellWand main command'
+    aliases: [qsw, sellwand]
+    permission: quicksellwand.cmd
+    usage: |
+      /<command> give <player> [usage] - Give player a Sell Wand item.
+      /<command> reload - reload the configurations.
+permissions:
+  quicksellwand.*:
+    children:
+      quicksellwand.use: true
+      quicksellwand.use.nocooldown: true
+      quicksellwand.cmd.give: true
+      quicksellwand.cmd.reload: true
+  quicksellwand.use:
+    default: true
+  quicksellwand.use.nocooldown:
+    default: false
+  quicksellwand.cmd:
+    default: false
+  quicksellwand.cmd.give:
+    children:
+      quicksellwand.cmd: true
+  quicksellwand.cmd.reload:
+    children:
+      quicksellwand.cmd: true
+

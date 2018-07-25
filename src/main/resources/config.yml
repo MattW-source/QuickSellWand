@@ -1,0 +1,33 @@
+# Shop Plugin used for selling the items
+# Supported Plugins:
+#   ShopGUIPlus
+shop-plugin: ''
+
+# Allowed block types. Use bukkit material type. https://hub.spigotmc.org/javadocs/bukkit/org/bukkit/Material.html
+# the block type must contains Inventory
+container-types:
+- CHEST
+- TRAPPED_CHEST
+- ENDER_CHEST
+
+wand-item:
+  # Wand usage cooldown in seconds. set 0 to disable
+  cooldown: 5
+  # Bukkit Material type for the item. https://hub.spigotmc.org/javadocs/bukkit/org/bukkit/Material.html
+  type: GOLD_HOE
+  # Display name of item
+  name: '&2Sell Wand'
+  # Enchantment glow effect
+  glow: true
+  # The item lore
+  # Placeholders:
+  # %usage% : how many times left this wand can be used
+  lore:
+  - '&7&m----------------------'
+  - ''
+  - '&fUsage Left: &7%usage%'
+  - ''
+  - '&fRight-Click container block with'
+  - '&fthis item to sell its contents'
+  - ''
+

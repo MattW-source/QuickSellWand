@@ -1,0 +1,6 @@
+### Maven
+target/
+### JetBrains
+.idea/
+*.iml
+src/test/
