@@ -29,6 +29,9 @@ public class WandService {
     }
 
     public static boolean isWand(ItemStack item) {
+        if (item == null || item.getType() == Material.AIR) {
+            return false;
+        }
         Boolean hasKey = new NBTItem(item).hasKey(TAG_USAGE);
         if (hasKey == null) {
             return false;
@@ -48,7 +51,7 @@ public class WandService {
 
         Material type = settings.getProperty(WandItemConfig.TYPE);
         if (!type.isItem()) {
-            type = Material.GOLD_HOE;
+            type = WandItemConfig.TYPE.getDefaultValue();
             plugin.getLogger().warning("Error while creating a new sell wand, the material type is not an item");
         }
         ItemStack item = new ItemStack(type);
