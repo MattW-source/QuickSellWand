@@ -3,17 +3,17 @@ package co.aeria.quicksellwand.service;
 import ch.jalu.configme.SettingsManager;
 import co.aeria.quicksellwand.QuickSellWandPlugin;
 import co.aeria.quicksellwand.config.WandItemConfig;
+import co.aeria.quicksellwand.utils.CompatUtils;
+import de.tr7zw.itemnbtapi.NBTItem;
 import java.util.ArrayList;
 import java.util.List;
 import org.bukkit.ChatColor;
 import org.bukkit.Material;
-import org.bukkit.Sound;
 import org.bukkit.enchantments.Enchantment;
 import org.bukkit.entity.Player;
 import org.bukkit.inventory.ItemFlag;
 import org.bukkit.inventory.ItemStack;
 import org.bukkit.inventory.meta.ItemMeta;
-import co.aeria.quicksellwand.utils.nbt.NBTItem;
 
 public class WandService {
 
@@ -50,7 +50,7 @@ public class WandService {
         }
 
         Material type = settings.getProperty(WandItemConfig.TYPE);
-        if (!type.isItem()) {
+        if (!CompatUtils.materialIsItem(type)) {
             type = WandItemConfig.TYPE.getDefaultValue();
             plugin.getLogger().warning("Error while creating a new sell wand, the material type is not an item");
         }
@@ -58,7 +58,7 @@ public class WandService {
         ItemMeta itemMeta = item.getItemMeta();
         itemMeta.setDisplayName(name);
         itemMeta.setLore(lore);
-        itemMeta.setUnbreakable(true);
+        CompatUtils.setItemMetaUnbreakable(itemMeta);
         if (settings.getProperty(WandItemConfig.GLOW)) {
             itemMeta.addEnchant(Enchantment.DURABILITY, 1, true);
         }
@@ -82,7 +82,9 @@ public class WandService {
 
         int usageLeft = usage - 1;
         if (usageLeft == 0) {
-            player.playSound(player.getLocation(), Sound.ENTITY_ITEM_BREAK, 1, 0);
+            if (CompatUtils.ITEM_BREAK_SOUND != null) {
+                player.playSound(player.getLocation(), CompatUtils.ITEM_BREAK_SOUND, 1, 0);
+            }
             return new ItemStack(Material.AIR);
         }
         return getNewWand(usageLeft);

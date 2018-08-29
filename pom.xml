@@ -46,6 +46,10 @@
                   <pattern>ch.jalu.configme</pattern>
                   <shadedPattern>co.aeria.quicksellwand.libs.ch.jalu.configme</shadedPattern>
                 </relocation>
+                <relocation>
+                  <pattern>de.tr7zw.itemnbtapi</pattern>
+                  <shadedPattern>co.aeria.quicksellwand.libs.de.tr7zw.itemnbtapi</shadedPattern>
+                </relocation>
               </relocations>
             </configuration>
           </execution>
@@ -92,6 +96,12 @@
           <artifactId>snakeyaml</artifactId>
         </exclusion>
       </exclusions>
+    </dependency>
+    <dependency>
+      <groupId>de.tr7zw</groupId>
+      <artifactId>item-nbt-api</artifactId>
+      <version>1.7-SNAPSHOT</version>
+      <scope>compile</scope>
     </dependency>
 
     <!-- Installed on local repo -->

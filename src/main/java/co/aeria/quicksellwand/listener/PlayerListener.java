@@ -10,18 +10,18 @@ import co.aeria.quicksellwand.config.MessageSender;
 import co.aeria.quicksellwand.config.MessageSender.Placeholder;
 import co.aeria.quicksellwand.config.Messages;
 import co.aeria.quicksellwand.service.WandService;
+import co.aeria.quicksellwand.utils.CompatUtils;
 import java.util.Arrays;
 import java.util.Optional;
 import org.bukkit.block.BlockState;
-import org.bukkit.block.Container;
 import org.bukkit.entity.Player;
 import org.bukkit.event.EventHandler;
 import org.bukkit.event.Listener;
 import org.bukkit.event.block.Action;
 import org.bukkit.event.block.BlockPlaceEvent;
 import org.bukkit.event.player.PlayerInteractEvent;
-import org.bukkit.inventory.EquipmentSlot;
 import org.bukkit.inventory.Inventory;
+import org.bukkit.inventory.InventoryHolder;
 import org.bukkit.inventory.ItemStack;
 
 public class PlayerListener implements Listener {
@@ -37,7 +37,7 @@ public class PlayerListener implements Listener {
     @EventHandler(ignoreCancelled = true)
     public void onInteract(PlayerInteractEvent event) {
         ItemStack item = event.getItem();
-        if (event.getAction() != Action.RIGHT_CLICK_BLOCK || event.getHand() != EquipmentSlot.HAND
+        if (event.getAction() != Action.RIGHT_CLICK_BLOCK || CompatUtils.isNotMainHand(event)
             || !WandService.isWand(item)) {
             return;
         }
@@ -45,7 +45,7 @@ public class PlayerListener implements Listener {
         event.setCancelled(true);
 
         BlockState blockState = event.getClickedBlock().getState();
-        if (!(blockState instanceof Container)) {
+        if (!(blockState instanceof InventoryHolder)) {
             return;
         }
         if (!plugin.getSettings().getProperty(MainConfig.CONTAINERS).contains(blockState.getType())) {
@@ -64,14 +64,14 @@ public class PlayerListener implements Listener {
             return;
         }
 
-        Inventory inv = ((Container) blockState).getInventory();
+        Inventory inv = ((InventoryHolder) blockState).getInventory();
         Optional<ShopService> shopService = plugin.getShopService();
         if (shopService.isPresent()) {
             SellResult result = shopService.get().sell(player, Arrays.asList(inv.getContents()));
             if (result.getResultType() == SellResultType.SOLD) {
                 inv.removeItem(result.getSoldItems().toArray(new ItemStack[0]));
                 ItemStack newWand = wandService.useWand(player, item);
-                player.getInventory().setItemInMainHand(newWand);
+                CompatUtils.setItemInHand(player, newWand);
                 msg.send(player, Messages.ITEMS_SOLD, Placeholder.of("price", String.format("%,.2f", result.getPrice())));
             } else if (result.getResultType() == SellResultType.NO_ITEM_SOLD) {
                 msg.send(player, Messages.NO_ITEMS_TO_SELL);
