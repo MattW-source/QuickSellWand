@@ -14,7 +14,7 @@ public class WandItemConfig implements SettingsHolder {
     @Comment({
         "Click type to use the wand. valid types:",
         "LEFT, RIGHT, ANY"})
-    public static final Property<ClickType> CLICK = newProperty(ClickType.class, "click-type", ClickType.RIGHT);
+    public static final Property<ClickType> CLICK = newProperty(ClickType.class, "wand-item.click-type", ClickType.RIGHT);
 
     @Comment("Wand usage cooldown in seconds. set 0 to disable")
     public static final Property<Integer> COOLDOWN = newProperty("wand-item.cooldown", 5);
