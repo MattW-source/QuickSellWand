@@ -26,7 +26,7 @@ wand-item:
   # Placeholders:
   # %usage% : how many times left this wand can be used
   lore:
-  - '&7&m----------------------'
+    - '&7&m----------------------'
     - ''
     - '&fUsage Left: &7%usage%'
     - ''
@@ -35,6 +35,8 @@ wand-item:
     - ''
 messages:
   prefix: '&7[&bQuickSellWand&7] &f'
+  shop_plugin_disabled: '&cThe Shop Plugin is not enabled!'
+  no_shop_plugin: '&cThe shop plugin is not found or configured. Please configure it in config.yml'
   no_use_wand: '&cYou are not allowed to use the sell wand'
   wand_on_cooldown: '&cThe wand is on cooldown for &f%cooldown% &csecond(s)'
   no_permission: '&cYou don''t have permission to use this command'

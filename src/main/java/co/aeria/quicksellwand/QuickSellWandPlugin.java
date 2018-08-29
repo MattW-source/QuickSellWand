@@ -17,6 +17,7 @@ import co.aeria.quicksellwand.service.shop.ShopGUIPlusService;
 import com.google.common.base.Preconditions;
 import java.io.File;
 import java.util.Optional;
+import org.bukkit.Bukkit;
 import org.bukkit.plugin.Plugin;
 import org.bukkit.plugin.java.JavaPlugin;
 
@@ -39,7 +40,7 @@ public final class QuickSellWandPlugin extends JavaPlugin implements QuickSellWa
         Plugin plugin = getServer().getPluginManager().getPlugin(pluginName);
         if (plugin != null) {
             if (!plugin.isEnabled()) {
-                getLogger().warning("The Shop Plugin is not enabled!");
+                messageSender.send(Bukkit.getConsoleSender(), Messages.SHOP_PLUGIN_DISABLED);
                 return null;
             }
             ShopService service = null;
@@ -53,7 +54,7 @@ public final class QuickSellWandPlugin extends JavaPlugin implements QuickSellWa
                 return service;
             }
         }
-        getLogger().warning("The shop plugin is not found or configured. Please configure it in config.yml");
+        messageSender.send(Bukkit.getConsoleSender(), Messages.NO_SHOP_PLUGIN);
         return null;
     }
 

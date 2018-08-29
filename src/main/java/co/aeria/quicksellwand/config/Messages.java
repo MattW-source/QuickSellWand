@@ -9,6 +9,10 @@ public final class Messages implements SettingsHolder {
 
     public static final Property<String> PREFIX = newProperty("messages.prefix",
         "&7[&bQuickSellWand&7] &f");
+    public static final Property<String> SHOP_PLUGIN_DISABLED = newProperty("messages.shop_plugin_disabled",
+        "&cThe Shop Plugin is not enabled!");
+    public static final Property<String> NO_SHOP_PLUGIN = newProperty("messages.no_shop_plugin",
+        "&cThe shop plugin is not found or configured. Please configure it in config.yml");
     public static final Property<String> NO_USE_WAND = newProperty("messages.no_use_wand",
         "&cYou are not allowed to use the sell wand");
     public static final Property<String> WAND_ON_COOLDOWN = newProperty("messages.wand_on_cooldown",
