@@ -11,6 +11,9 @@ container-types:
 - ENDER_CHEST
 
 wand-item:
+  # Click type to use the wand. valid types:
+  # LEFT, RIGHT, ANY
+  click-type: RIGHT
   # Wand usage cooldown in seconds. set 0 to disable
   cooldown: 5
   # Bukkit Material type for the item. https://hub.spigotmc.org/javadocs/bukkit/org/bukkit/Material.html

@@ -9,12 +9,15 @@ import co.aeria.quicksellwand.config.MainConfig;
 import co.aeria.quicksellwand.config.MessageSender;
 import co.aeria.quicksellwand.config.MessageSender.Placeholder;
 import co.aeria.quicksellwand.config.Messages;
+import co.aeria.quicksellwand.config.WandItemConfig;
+import co.aeria.quicksellwand.config.WandItemConfig.ClickType;
 import co.aeria.quicksellwand.service.WandService;
 import co.aeria.quicksellwand.utils.CompatUtils;
 import java.util.Arrays;
 import java.util.Optional;
 import org.bukkit.block.BlockState;
 import org.bukkit.entity.Player;
+import org.bukkit.event.Event.Result;
 import org.bukkit.event.EventHandler;
 import org.bukkit.event.Listener;
 import org.bukkit.event.block.Action;
@@ -37,9 +40,23 @@ public class PlayerListener implements Listener {
     @EventHandler(ignoreCancelled = true)
     public void onInteract(PlayerInteractEvent event) {
         ItemStack item = event.getItem();
-        if (event.getAction() != Action.RIGHT_CLICK_BLOCK || CompatUtils.isNotMainHand(event)
+        if (event.getAction() != Action.LEFT_CLICK_BLOCK || event.getAction() != Action.RIGHT_CLICK_BLOCK
+            || CompatUtils.isNotMainHand(event)
             || !WandService.isWand(item)) {
             return;
+        }
+        event.setUseItemInHand(Result.DENY);
+
+        // compare click type
+        ClickType clickType = plugin.getSettings().getProperty(WandItemConfig.CLICK);
+        Action action = event.getAction();
+        if (clickType != ClickType.ANY) {
+            if (clickType == ClickType.LEFT && action != Action.LEFT_CLICK_BLOCK) {
+                return;
+            }
+            if (clickType == ClickType.RIGHT && action != Action.RIGHT_CLICK_BLOCK) {
+                return;
+            }
         }
 
         event.setCancelled(true);

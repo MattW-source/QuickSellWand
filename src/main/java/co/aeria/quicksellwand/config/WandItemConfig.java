@@ -11,6 +11,11 @@ import org.bukkit.Material;
 
 public class WandItemConfig implements SettingsHolder {
 
+    @Comment({
+        "Click type to use the wand. valid types:",
+        "LEFT, RIGHT, ANY"})
+    public static final Property<ClickType> CLICK = newProperty(ClickType.class, "click-type", ClickType.RIGHT);
+
     @Comment("Wand usage cooldown in seconds. set 0 to disable")
     public static final Property<Integer> COOLDOWN = newProperty("wand-item.cooldown", 5);
 
@@ -29,8 +34,7 @@ public class WandItemConfig implements SettingsHolder {
     @Comment({
         "The item lore",
         "Placeholders:",
-        "%usage% : how many times left this wand can be used"
-    })
+        "%usage% : how many times left this wand can be used"})
     public static final Property<List<String>> LORE = newListProperty("wand-item.lore",
         "&7&m----------------------",
         "",
@@ -39,4 +43,8 @@ public class WandItemConfig implements SettingsHolder {
         "&fRight-Click container block with",
         "&fthis item to sell its contents",
         "");
+
+    public enum ClickType {
+        LEFT, RIGHT, ANY
+    }
 }
