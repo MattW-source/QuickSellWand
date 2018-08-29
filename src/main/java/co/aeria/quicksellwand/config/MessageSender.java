@@ -15,6 +15,9 @@ public final class MessageSender {
 
     public void send(CommandSender to, Property<String> key, Placeholder... placeholders) {
         String message = settings.getProperty(key);
+        if (message.isEmpty()) {
+            return;
+        }
         for (Placeholder placeholder : placeholders) {
             message = message.replace(placeholder.key, String.valueOf(placeholder.value));
         }

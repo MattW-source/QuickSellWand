@@ -2,14 +2,12 @@
 # Supported Plugins:
 #   ShopGUIPlus
 shop-plugin: ''
-
 # Allowed block types. Use bukkit material type. https://hub.spigotmc.org/javadocs/bukkit/org/bukkit/Material.html
 # the block type must contains Inventory
 container-types:
-- CHEST
-- TRAPPED_CHEST
-- ENDER_CHEST
-
+- 'CHEST'
+- 'ENDER_CHEST'
+- 'TRAPPED_CHEST'
 wand-item:
   # Click type to use the wand. valid types:
   # LEFT, RIGHT, ANY
@@ -17,20 +15,32 @@ wand-item:
   # Wand usage cooldown in seconds. set 0 to disable
   cooldown: 5
   # Bukkit Material type for the item. https://hub.spigotmc.org/javadocs/bukkit/org/bukkit/Material.html
-  type: GOLD_HOE
+  type: 'GOLD_HOE'
   # Display name of item
   name: '&2Sell Wand'
   # Enchantment glow effect
   glow: true
+  # Text used if the wand usage is infinity
+  infinity_text: 'Infinity'
   # The item lore
   # Placeholders:
   # %usage% : how many times left this wand can be used
   lore:
   - '&7&m----------------------'
-  - ''
-  - '&fUsage Left: &7%usage%'
-  - ''
-  - '&fRight-Click container block with'
-  - '&fthis item to sell its contents'
-  - ''
-
+    - ''
+    - '&fUsage Left: &7%usage%'
+    - ''
+    - '&fRight-Click container block with'
+    - '&fthis item to sell its contents'
+    - ''
+messages:
+  prefix: '&7[&bQuickSellWand&7] &f'
+  no_use_wand: '&cYou are not allowed to use the sell wand'
+  wand_on_cooldown: '&cThe wand is on cooldown for &f%cooldown% &csecond(s)'
+  no_permission: '&cYou don''t have permission to use this command'
+  config_reloaded: '&aConfigurations reloaded.'
+  player_not_found: '&cCan''t find that player'
+  inventory_full: '&cCan''t add sell wand to player''s inventory. The inventory is full!'
+  wand_added: '&eA sell wand added to player''s inventory.'
+  items_sold: '&eSold items inside chest to the server shop for &b$%price%'
+  no_items_to_sell: '&eThere is nothing inside this container that can be sold'
