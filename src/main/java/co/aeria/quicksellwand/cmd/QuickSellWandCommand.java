@@ -4,16 +4,18 @@ import co.aeria.quicksellwand.Perms;
 import co.aeria.quicksellwand.QuickSellWandPlugin;
 import co.aeria.quicksellwand.config.MessageSender;
 import co.aeria.quicksellwand.config.Messages;
+import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.List;
 import java.util.Optional;
 import org.bukkit.Bukkit;
 import org.bukkit.command.Command;
-import org.bukkit.command.CommandExecutor;
 import org.bukkit.command.CommandSender;
+import org.bukkit.command.TabExecutor;
 import org.bukkit.entity.Player;
 import org.bukkit.inventory.ItemStack;
 
-public class QuickSellWandCommand implements CommandExecutor {
+public class QuickSellWandCommand implements TabExecutor {
 
     private final QuickSellWandPlugin plugin;
     private final MessageSender msg;
@@ -70,6 +72,28 @@ public class QuickSellWandCommand implements CommandExecutor {
             return true;
         }
         return false;
+    }
+
+    @Override
+    public List<String> onTabComplete(CommandSender sender, Command command, String alias, String[] args) {
+        if (args.length == 1) {
+            String[] args1 = new String[]{"give", "reload"};
+            List<String> result = new ArrayList<>();
+            for (String s : args1) {
+                if (s.startsWith(args[0])) {
+                    result.add(s);
+                }
+            }
+            return result;
+        }
+        if (args.length == 2 && "give".equals(args[0])) {
+            List<String> result = new ArrayList<>();
+            for (Player player : plugin.getServer().getOnlinePlayers()) {
+                result.add(player.getName());
+            }
+            return result;
+        }
+        return null;
     }
 
     private static Optional<Integer> asInteger(String str) {
