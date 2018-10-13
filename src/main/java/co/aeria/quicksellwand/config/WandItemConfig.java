@@ -6,6 +6,7 @@ import static ch.jalu.configme.properties.PropertyInitializer.newProperty;
 import ch.jalu.configme.Comment;
 import ch.jalu.configme.SettingsHolder;
 import ch.jalu.configme.properties.Property;
+import co.aeria.quicksellwand.config.properties.MaterialProperty;
 import java.util.List;
 import org.bukkit.Material;
 
@@ -20,7 +21,7 @@ public class WandItemConfig implements SettingsHolder {
     public static final Property<Integer> COOLDOWN = newProperty("wand-item.cooldown", 5);
 
     @Comment("Bukkit Material type for the item. https://hub.spigotmc.org/javadocs/bukkit/org/bukkit/Material.html")
-    public static final Property<Material> TYPE = newProperty(Material.class, "wand-item.type", findGoldenHoe());
+    public static final Property<Material> TYPE = new MaterialProperty( "wand-item.type", Material.getMaterial("GOLD_HOE"));
 
     @Comment("Display name of item")
     public static final Property<String> NAME = newProperty("wand-item.name", "&2Sell Wand");
@@ -48,11 +49,4 @@ public class WandItemConfig implements SettingsHolder {
         LEFT, RIGHT, ANY
     }
 
-    private static Material findGoldenHoe() {
-        Material result = Material.getMaterial("GOLD_HOE");
-        if (result != null) {
-            return result;
-        }
-        return Material.getMaterial("GOLDEN_HOE");
-    }
 }
