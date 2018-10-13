@@ -20,7 +20,7 @@ public class WandItemConfig implements SettingsHolder {
     public static final Property<Integer> COOLDOWN = newProperty("wand-item.cooldown", 5);
 
     @Comment("Bukkit Material type for the item. https://hub.spigotmc.org/javadocs/bukkit/org/bukkit/Material.html")
-    public static final Property<Material> TYPE = newProperty(Material.class, "wand-item.type", Material.GOLD_HOE);
+    public static final Property<Material> TYPE = newProperty(Material.class, "wand-item.type", findGoldenHoe());
 
     @Comment("Display name of item")
     public static final Property<String> NAME = newProperty("wand-item.name", "&2Sell Wand");
@@ -46,5 +46,13 @@ public class WandItemConfig implements SettingsHolder {
 
     public enum ClickType {
         LEFT, RIGHT, ANY
+    }
+
+    private static Material findGoldenHoe() {
+        Material result = Material.getMaterial("GOLD_HOE");
+        if (result != null) {
+            return result;
+        }
+        return Material.getMaterial("GOLDEN_HOE");
     }
 }

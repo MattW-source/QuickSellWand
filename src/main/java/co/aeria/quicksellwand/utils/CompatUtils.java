@@ -62,59 +62,52 @@ public final class CompatUtils {
         if (mMaterial_IsItem) {
             material.isItem();
         }
-        switch (material) {
-            case WATER:
-            case STATIONARY_WATER:
-            case LAVA:
-            case STATIONARY_LAVA:
-            case BED_BLOCK:
-            case PISTON_EXTENSION:
-            case PISTON_MOVING_PIECE:
-            case DOUBLE_STEP:
-            case FIRE:
-            case REDSTONE_WIRE:
-            case CROPS:
-            case BURNING_FURNACE:
-            case SIGN_POST:
-            case WOODEN_DOOR:
-            case WALL_SIGN:
-            case IRON_DOOR_BLOCK:
-            case GLOWING_REDSTONE_ORE:
-            case REDSTONE_TORCH_OFF:
-            case SUGAR_CANE_BLOCK:
-            case PORTAL:
-            case CAKE_BLOCK:
-            case DIODE_BLOCK_OFF:
-            case DIODE_BLOCK_ON:
-            case PUMPKIN_STEM:
-            case MELON_STEM:
-            case NETHER_WARTS:
-            case BREWING_STAND:
-            case CAULDRON:
-            case ENDER_PORTAL:
-            case REDSTONE_LAMP_ON:
-            case WOOD_DOUBLE_STEP:
-            case COCOA:
-            case TRIPWIRE:
-            case FLOWER_POT:
-            case CARROT:
-            case POTATO:
-            case SKULL:
-            case REDSTONE_COMPARATOR_OFF:
-            case REDSTONE_COMPARATOR_ON:
-            case STANDING_BANNER:
-            case WALL_BANNER:
-            case DAYLIGHT_DETECTOR_INVERTED:
-            case DOUBLE_STONE_SLAB2:
-            case SPRUCE_DOOR:
-            case BIRCH_DOOR:
-            case JUNGLE_DOOR:
-            case ACACIA_DOOR:
-            case DARK_OAK_DOOR:
-                return false;
-            default:
-                return true;
-        }
+        return material != Material.WATER
+            && material != Material.STATIONARY_WATER
+            && material != Material.LAVA
+            && material != Material.STATIONARY_LAVA
+            && material != Material.BED_BLOCK
+            && material != Material.PISTON_EXTENSION
+            && material != Material.PISTON_MOVING_PIECE
+            && material != Material.DOUBLE_STEP && material != Material.FIRE
+            && material != Material.REDSTONE_WIRE && material != Material.CROPS
+            && material != Material.BURNING_FURNACE
+            && material != Material.SIGN_POST
+            && material != Material.WOODEN_DOOR
+            && material != Material.WALL_SIGN
+            && material != Material.IRON_DOOR_BLOCK
+            && material != Material.GLOWING_REDSTONE_ORE
+            && material != Material.REDSTONE_TORCH_OFF
+            && material != Material.SUGAR_CANE_BLOCK
+            && material != Material.PORTAL
+            && material != Material.CAKE_BLOCK
+            && material != Material.DIODE_BLOCK_OFF
+            && material != Material.DIODE_BLOCK_ON
+            && material != Material.PUMPKIN_STEM
+            && material != Material.MELON_STEM
+            && material != Material.NETHER_WARTS
+            && material != Material.BREWING_STAND
+            && material != Material.CAULDRON
+            && material != Material.ENDER_PORTAL
+            && material != Material.REDSTONE_LAMP_ON
+            && material != Material.WOOD_DOUBLE_STEP
+            && material != Material.COCOA
+            && material != Material.TRIPWIRE
+            && material != Material.FLOWER_POT
+            && material != Material.CARROT
+            && material != Material.POTATO
+            && material != Material.SKULL
+            && material != Material.REDSTONE_COMPARATOR_OFF
+            && material != Material.REDSTONE_COMPARATOR_ON
+            && material != Material.STANDING_BANNER
+            && material != Material.WALL_BANNER
+            && material != Material.DAYLIGHT_DETECTOR_INVERTED
+            && material != Material.DOUBLE_STONE_SLAB2
+            && material != Material.SPRUCE_DOOR
+            && material != Material.BIRCH_DOOR
+            && material != Material.JUNGLE_DOOR
+            && material != Material.ACACIA_DOOR
+            && material != Material.DARK_OAK_DOOR;
     }
 
     public static boolean isNotMainHand(PlayerInteractEvent event) {

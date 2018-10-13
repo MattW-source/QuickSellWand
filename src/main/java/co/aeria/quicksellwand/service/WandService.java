@@ -50,9 +50,10 @@ public class WandService {
         }
 
         Material type = settings.getProperty(WandItemConfig.TYPE);
-        if (!CompatUtils.materialIsItem(type)) {
+        if (type == null || !CompatUtils.materialIsItem(type)) {
             type = WandItemConfig.TYPE.getDefaultValue();
-            plugin.getLogger().warning("Error while creating a new sell wand, the material type is not an item");
+            plugin.getLogger().warning("Error while creating a new sell wand, the material type"
+                + " is invalid or not an item");
         }
         ItemStack item = new ItemStack(type);
         ItemMeta itemMeta = item.getItemMeta();
