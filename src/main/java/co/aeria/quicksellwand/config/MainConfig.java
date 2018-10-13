@@ -10,6 +10,8 @@ import java.util.Set;
 import org.bukkit.Material;
 
 public final class MainConfig implements SettingsHolder {
+    @Comment("Show debug info")
+    public static final Property<Boolean> DEBUG = newProperty("debug", false);
 
     @Comment({
         "Shop Plugin used for selling the items",

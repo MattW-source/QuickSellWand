@@ -1,3 +1,5 @@
+# Show debug info
+debug: false
 # Shop Plugin used for selling the items
 # Supported Plugins:
 #   ShopGUIPlus

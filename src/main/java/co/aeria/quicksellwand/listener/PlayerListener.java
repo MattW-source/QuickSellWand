@@ -1,5 +1,6 @@
 package co.aeria.quicksellwand.listener;
 
+import ch.jalu.configme.SettingsManager;
 import co.aeria.quicksellwand.Perms;
 import co.aeria.quicksellwand.QuickSellWandPlugin;
 import co.aeria.quicksellwand.api.SellResult;
@@ -30,10 +31,12 @@ import org.bukkit.inventory.ItemStack;
 public class PlayerListener implements Listener {
 
     private QuickSellWandPlugin plugin;
+    private SettingsManager settings;
     private MessageSender msg;
 
     public PlayerListener(QuickSellWandPlugin plugin) {
         this.plugin = plugin;
+        this.settings = plugin.getSettings();
         this.msg = plugin.getMessageSender();
     }
 
@@ -48,13 +51,19 @@ public class PlayerListener implements Listener {
         event.setUseItemInHand(Result.DENY);
 
         // compare click type
-        ClickType clickType = plugin.getSettings().getProperty(WandItemConfig.CLICK);
+        ClickType clickType = settings.getProperty(WandItemConfig.CLICK);
         Action action = event.getAction();
         if (clickType != ClickType.ANY) {
             if (clickType == ClickType.LEFT && action != Action.LEFT_CLICK_BLOCK) {
+                if (settings.getProperty(MainConfig.DEBUG)) {
+                    plugin.getLogger().info("Skip use wand with ClickType: Left, Action: " + action);
+                }
                 return;
             }
             if (clickType == ClickType.RIGHT && action != Action.RIGHT_CLICK_BLOCK) {
+                if (settings.getProperty(MainConfig.DEBUG)) {
+                    plugin.getLogger().info("Skip use wand with ClickType: Right, Action: " + action);
+                }
                 return;
             }
         }
@@ -63,9 +72,16 @@ public class PlayerListener implements Listener {
 
         BlockState blockState = event.getClickedBlock().getState();
         if (!(blockState instanceof InventoryHolder)) {
+            if (settings.getProperty(MainConfig.DEBUG)) {
+                plugin.getLogger().info("BlockState isn't instance of InventoryHolder");
+            }
             return;
         }
-        if (!plugin.getSettings().getProperty(MainConfig.CONTAINERS).contains(blockState.getType())) {
+
+        if (!settings.getProperty(MainConfig.CONTAINERS).contains(blockState.getType())) {
+            if (settings.getProperty(MainConfig.DEBUG)) {
+                plugin.getLogger().info("BlockState type isn't whitelisted");
+            }
             return;
         }
 
@@ -92,6 +108,10 @@ public class PlayerListener implements Listener {
                 msg.send(player, Messages.ITEMS_SOLD, Placeholder.of("price", String.format("%,.2f", result.getPrice())));
             } else if (result.getResultType() == SellResultType.NO_ITEM_SOLD) {
                 msg.send(player, Messages.NO_ITEMS_TO_SELL);
+            }
+        } else {
+            if (settings.getProperty(MainConfig.DEBUG)) {
+                plugin.getLogger().info("No ShopService available, it will do nothing");
             }
         }
     }
