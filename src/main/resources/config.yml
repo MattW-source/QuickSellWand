@@ -2,7 +2,7 @@
 debug: false
 # Shop Plugin used for selling the items
 # Supported Plugins:
-#   ShopGUIPlus
+#   ShopGUIPlus, Essentials
 shop-plugin: ''
 # Allowed block types. Use bukkit material type. https://hub.spigotmc.org/javadocs/bukkit/org/bukkit/Material.html
 # the block type must contains Inventory

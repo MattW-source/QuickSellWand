@@ -77,6 +77,10 @@
       <id>jitpack.io</id>
       <url>https://jitpack.io</url>
     </repository>
+    <repository>
+      <id>essentials</id>
+      <url>https://ci.ender.zone/plugin/repository/everything/</url>
+    </repository>
   </repositories>
 
   <dependencies>
@@ -104,6 +108,12 @@
       <scope>compile</scope>
     </dependency>
 
+    <dependency>
+      <groupId>net.ess3</groupId>
+      <artifactId>EssentialsX</artifactId>
+      <version>2.16.0</version>
+      <scope>provided</scope>
+    </dependency>
     <!-- Installed on local repo -->
     <dependency>
       <groupId>net.brcdev</groupId>

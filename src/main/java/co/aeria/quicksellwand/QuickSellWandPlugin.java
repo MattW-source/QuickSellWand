@@ -13,6 +13,7 @@ import co.aeria.quicksellwand.config.Messages;
 import co.aeria.quicksellwand.config.WandItemConfig;
 import co.aeria.quicksellwand.listener.PlayerListener;
 import co.aeria.quicksellwand.service.WandService;
+import co.aeria.quicksellwand.service.shop.EssentialsWorthShopService;
 import co.aeria.quicksellwand.service.shop.ShopGUIPlusService;
 import com.google.common.base.Preconditions;
 import java.io.File;
@@ -44,10 +45,14 @@ public final class QuickSellWandPlugin extends JavaPlugin implements QuickSellWa
                 return null;
             }
             ShopService service = null;
-            switch (pluginName) {
+            switch (plugin.getName()) {
                 case "ShopGUIPlus":
                     service = new ShopGUIPlusService(this, plugin);
                     break;
+                case "Essentials":
+                    service = new EssentialsWorthShopService(this, plugin);
+                    break;
+
             }
             if (service != null) {
                 getLogger().info("Using '" + plugin.getName() + "' as Shop Plugin");
