@@ -108,7 +108,7 @@
     <dependency>
       <groupId>net.brcdev</groupId>
       <artifactId>ShopGUIPlus</artifactId>
-      <version>1.18.1</version>
+      <version>1.19.1-1.12-SNAPSHOT</version>
       <scope>provided</scope>
     </dependency>
 

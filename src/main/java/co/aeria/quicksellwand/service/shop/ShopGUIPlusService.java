@@ -30,16 +30,20 @@ public class ShopGUIPlusService implements ShopService {
         double soldPrice = 0;
         SellResultType resultType = SellResultType.NO_ITEM_SOLD;
         for (ItemStack item : items) {
-            ShopItem shopItem = ShopGuiPlusApi.getItemStackShopItem(player, item);
-            if (shopItem != null) {
-                Shop shop = ShopGuiPlusApi.getItemStackShop(player, item);
-                double sellPrice = shopItem.getSellPriceForAmount(shop, player, playerData, item.getAmount());
-                if (sellPrice > 0) {
-                    shopPlugin.getEconomyProvider().deposit(player, sellPrice);
-                    soldItems.add(item);
-                    soldPrice += sellPrice;
-                    resultType = SellResultType.SOLD;
+            try {
+                ShopItem shopItem = ShopGuiPlusApi.getItemStackShopItem(player, item);
+                if (shopItem != null) {
+                    Shop shop = ShopGuiPlusApi.getItemStackShop(player, item);
+                    double sellPrice = shopItem.getSellPriceForAmount(shop, player, playerData, item.getAmount());
+                    if (sellPrice > 0) {
+                        shopPlugin.getEconomyProvider().deposit(player, sellPrice);
+                        soldItems.add(item);
+                        soldPrice += sellPrice;
+                        resultType = SellResultType.SOLD;
+                    }
                 }
+            } catch (Exception ex) {
+                ex.printStackTrace();
             }
         }
         return new SellResult(resultType, soldItems, soldPrice);
