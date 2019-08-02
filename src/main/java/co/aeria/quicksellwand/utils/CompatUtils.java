@@ -132,4 +132,11 @@ public final class CompatUtils {
             itemMeta.spigot().setUnbreakable(true);
         }
     }
+
+    public static Material getMaterial(String name, String fallbackName) {
+        Material m = Material.getMaterial(name);
+        if (m != null)
+            return m;
+        return Material.getMaterial(fallbackName);
+    }
 }

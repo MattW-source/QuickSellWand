@@ -1,5 +1,6 @@
 name: QuickSellWand
 version: ${project.version}
+api-version: '1.13'
 main: co.aeria.quicksellwand.QuickSellWandPlugin
 softdepend: [ShopGUIPlus]
 authors: ['DNx5']
