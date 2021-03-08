@@ -48,3 +48,4 @@ messages:
   wand_added: '&eA sell wand added to player''s inventory.'
   items_sold: '&eSold items inside chest to the server shop for &b$%price%'
   no_items_to_sell: '&eThere is nothing inside this container that can be sold'
+  not_island_member: '&cYou must be a member of the island to use this here'
