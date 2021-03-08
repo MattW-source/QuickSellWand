@@ -31,5 +31,7 @@ public final class Messages implements SettingsHolder {
         "&eSold items inside chest to the server shop for &b$%price%");
     public static final Property<String> NO_ITEMS_TO_SELL = newProperty("messages.no_items_to_sell",
         "&eThere is nothing inside this container that can be sold");
+    public static final Property<String> NOT_ISLAND_MEMBER = newProperty("messages.not_island_member",
+            "&cYou must be a member of the island to use this here");
 
 }
