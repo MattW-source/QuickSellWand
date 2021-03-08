@@ -3,8 +3,9 @@ version: ${project.version}
 api-version: '1.13'
 main: co.aeria.quicksellwand.QuickSellWandPlugin
 softdepend: [ShopGUIPlus]
-authors: ['DNx5']
+authors: ['DNx5', 'Matthew Wakeham']
 description: Sell your chest contents quickly by simply right-click
+depend: [SuperiorSkyblock2]
 commands:
   quicksellwand:
     description: 'QuickSellWand main command'
