@@ -97,9 +97,10 @@ public class PlayerListener implements Listener {
         }
 
         // Prevent people selling contents of chests on other peoples islands
+        SuperiorPlayer superiorPlayer = SuperiorSkyblockAPI.getPlayer(player.getUniqueId());
         Location playerLocation = player.getLocation();
         Island island = SuperiorSkyblockAPI.getGrid().getIslandAt(playerLocation);
-        if(!island.isMember((SuperiorPlayer) player)) {
+        if(!island.isMember(superiorPlayer)) {
             msg.send(player, Messages.NOT_ISLAND_MEMBER);
             return;
         }
