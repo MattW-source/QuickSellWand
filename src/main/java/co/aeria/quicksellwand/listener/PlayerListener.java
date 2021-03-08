@@ -16,6 +16,11 @@ import co.aeria.quicksellwand.service.WandService;
 import co.aeria.quicksellwand.utils.CompatUtils;
 import java.util.Arrays;
 import java.util.Optional;
+
+import com.bgsoftware.superiorskyblock.api.SuperiorSkyblockAPI;
+import com.bgsoftware.superiorskyblock.api.island.Island;
+import com.bgsoftware.superiorskyblock.api.wrappers.SuperiorPlayer;
+import org.bukkit.Location;
 import org.bukkit.block.BlockState;
 import org.bukkit.entity.Player;
 import org.bukkit.event.Event.Result;
@@ -90,6 +95,15 @@ public class PlayerListener implements Listener {
             msg.send(player, Messages.NO_USE_WAND);
             return;
         }
+
+        // Prevent people selling contents of chests on other peoples islands
+        Location playerLocation = player.getLocation();
+        Island island = SuperiorSkyblockAPI.getGrid().getIslandAt(playerLocation);
+        if(!island.isMember((SuperiorPlayer) player)) {
+            msg.send(player, Messages.NOT_ISLAND_MEMBER);
+            return;
+        }
+
 
         WandService wandService = plugin.getWandService();
         if (!player.hasPermission(Perms.NO_USE_COOLDOWN) && wandService.isOnCooldown(item)) {
